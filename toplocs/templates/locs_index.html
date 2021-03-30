@@ -1,0 +1,166 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<html lang="en">
+
+<head>
+    <title> Top Locations </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Chart js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css" integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w==" crossorigin="anonymous" />
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+</head>
+
+<body>
+    <div id="fh5co-main">
+        <div class="fh5co-narrow-content">
+            <h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">&nbsp; TOP LOCATIONS WITH THE BIGGEST NUMBER OF TWEETS RELATED TO CLIMATE CHANGE </h2>
+               
+                <script>
+                    $(document).ready(function() {
+                                var ctx = document.getElementById('myChart').getContext('2d');
+                                var myChart = new Chart(ctx, {
+                                    type: 'bar',
+                                    data: {
+                                        labels: [{% for item in qs %}'{{item.locat}}', {% endfor %}],
+                                        datasets: [{
+                                            label: '# Total tweets',
+                                            data: [{% for item in qs %} {{item.total}}, {% endfor %}],
+                                            backgroundColor: [
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                '#f3c8c8',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                '#f3c8c8',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                '#2ac6ac',
+                                                '#f3c8c8',
+                                                '#f3c8c8',
+                                                '#f3c8c8',
+                                                '#2ac6ac',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                '#f3c8c8',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                '#d89aef',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                '#f3c8c8',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                '#2ac6ac',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                '#f3c8c8',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                '#f3c8c8',
+                                                '#f3c8c8',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                '#d89aef',
+                                                '#f3c8c8',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                '#f3c8c8',
+                                                '#f3c8c8',
+                                                '#f3c8c8',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                '#f3c8c8',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                '#f3c8c8',
+                                                '#d89aef',
+                                                '#f3c8c8',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                '#f3c8c8',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                '#d89aef',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                '#f3c8c8',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                '#f3c8c8',
+                                                '#2ac6ac',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                '#2ac6ac',
+                                                '#f29c9c',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)'
+                                            ],
+                                            borderWidth: 1 
+                                        }]
+                                    },
+                                    options: {
+                                        scales: {
+                                            yAxes: [{
+                                                ticks: {
+                                                    beginAtZero: true
+                                                }
+                                            }]
+                                        }
+                                    }
+                                });
+                            });
+                </script>
+            <canvas id="myChart" width="80" height="50"></canvas>
+
+            <center><a class="btn btn-primary btn-learn" href="{% url 'locs_map' %}"> Generate World Map <i class="icon-arrow-right3"></i></a></center>
+        </div>
+    </div>
+</body>
+
+</html>
+
+{% endblock %}

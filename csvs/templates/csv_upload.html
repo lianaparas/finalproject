@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<html lang="en">
+  <head>
+    <title> CSV Upload </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <div id="fh5co-main">
+      <div class="fh5co-narrow-content">
+         <h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">&nbsp;&nbsp; THIS IS CSV DATA UPLOAD PAGE </h2>
+       </div>
+
+       
+       <div>
+        {% if messages %}
+        {% for message in messages %}
+            <div>
+<!--                | means OR operator-->
+                <strong>{{message|safe}}</strong>
+            </div>
+        {% endfor %}
+    {% else %}
+    {{order}}
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="file1"> Upload a file</label>
+        <input type="file" id="file1" name="file">&nbsp;
+        <small>Only accepts CSV files</small>
+        <button type="submit">Upload</button>
+    </form>
+    {% endif %}
+    {% for profile in profiles %}
+    {{profile.name}}
+    {% endfor %}
+        </div>
+      
+      </div>
+</body>
+</html>
+
+{% endblock %}

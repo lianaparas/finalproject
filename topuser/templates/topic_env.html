@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<html lang="en">
+  <head>
+    <title> Topics Based </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Chart js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css" integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w==" crossorigin="anonymous" />
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+</head>
+
+<body>
+  <div id="fh5co-main">
+      <div class="fh5co-narrow-content">
+         <center><h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">&nbsp;&nbsp; THE TOP USERS IN RESPECTIVE TOPICS </h2></center>
+
+         <h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">&nbsp;&nbsp; ENVIRONMENT RELATED </h2>
+
+                <script>
+                    $(document).ready(function() {
+                                var ctx = document.getElementById('myChart').getContext('2d');
+                                var myChart = new Chart(ctx, {
+                                    type: 'pie',
+                                    data: {
+                                        labels: [{% for item in qs %}'{{item.name}}', {% endfor %}],
+                                        datasets: [{
+                                            label: '# Total tweets',
+                                            data: [{% for item in qs %} {{item.env_score}}, {% endfor %}],
+                                            backgroundColor: [
+                                                '#002c28',
+                                                '#003430',
+                                                '#004942',
+                                                '#005f56',
+                                                '#1c7068',
+                                                '#19786f',
+                                                '#00897c',
+                                                '#38827b',
+                                                '#55948e',
+                                                '#71a6a1',
+                                                '#8db7b3',
+                                                '#aac9c6',
+                                                '#c6dbd9',
+                                                '#e2edec',
+                                                '#e9efea'
+                                            ],
+                                            borderWidth: 1 
+                                        }]
+                                    },
+                                });
+                            });
+                </script>
+            <canvas id="myChart" width="80" height="40"></canvas>
+        </div>
+
+        <div id="fh5co-main">
+            <div class="fh5co-narrow-content">
+                <a class="btn btn-primary btn-learn" href="{% url 'tu_topic' %}"> Economy <i class="icon-arrow-right3"></i></a>
+
+               <a class="btn btn-primary btn-learn" style="margin:50px;" href="{% url 'health_topic' %}"> Health <i class="icon-arrow-right3"></i></a>
+            </div>
+        </div>
+    </div>
+ 
+
+</body>
+</html>
+
+{% endblock %}

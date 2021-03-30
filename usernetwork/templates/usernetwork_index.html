@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<html lang="en">
+  <head>
+    <title> USER NETWORK </title>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/datatables.bootstrap4.min.css">
+
+    <style>
+	.pagination {
+	  display: inline-block;
+	}
+
+	.pagination a {
+	  color: black;
+	  float: left;
+	  padding: 8px 16px;
+	  text-decoration: none;
+	  font-size: 11px;
+	}
+
+	.pagination a.active {
+	  background-color: #4CAF50;
+	  color: white;
+	  border-radius: 5px;
+	}
+
+	.pagination a:hover:not(.active) {
+	  background-color: #ddd;
+	  border-radius: 5px;
+	}
+
+	.th, td {
+	    font-size: 13px;
+	}
+
+	.container {
+		font-size: 13px;
+	}
+</style>
+</head>
+
+<body style="background-color:whitesmoke;">
+  	<div id="fh5co-main">
+      
+      	<div class="fh5co-narrow-content">
+         	<center><h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft"> SOCIAL NETWORK ANALYSIS - REPLY GRAPH </h2></center>
+
+         	<table class="table table-striped table-bordered" style="width: 97%">
+	       		<thead class="thead-dark">
+	       			<tr>
+	       				<th>Source</th>
+	       				<th>Target</th>
+	       				<th>Strength</th>
+	       			</tr>
+	       		</thead>
+	       		<tbody>
+	       			{% for column in page_obj %}
+		       			<tr>
+		       				<td>{{column.source}}</td>
+		       				<td>{{column.target}}</td>
+		       				<td>{{column.strength}}</td>
+		       			</tr>
+	       			{% endfor %}
+	       		</tbody>
+	       	</table>
+	       	<center><span class="current">
+            	Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        	</span></center>   
+
+	    <div class="pagination">
+	    	<span class="step-links">
+		       	{% if page_obj.has_previous %}
+	            <a href="?page=1">&laquo; first</a>
+	            <a href="?page={{ page_obj.previous_page_number }}">Prev</a>
+	        		{% endif %}
+
+	        		{% if page_obj.has_next %}
+	            <a href="?page={{ page_obj.next_page_number }}">next</a>
+	            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+	        		{% endif %}
+			</span> 
+       </div>
+
+   		<div class="container">
+   			<center><form>
+				  <label for="data">Choose Data:</label>&nbsp; &nbsp;
+				  <select id="data" name="data">
+					    <option value="graph/index.html">All Nodes/Edges</option>
+					    <option value="graph01/index.html">Only Largest Component</option>
+				  </select> &nbsp; &nbsp; &nbsp;
+
+				  <label for="measure">Measurement:</label>&nbsp;
+				  <select id="measure" name="measure">
+					    <option value="none">None</option>
+					    <option value="eigen">Eigenvector Centrality</option>
+				  </select>
+			</form>&nbsp; </center>
+
+			<div>
+	       		<center><button type="button" class="btn btn-primary" onclick="goToSite()"> GENERATE SNA GRAPH <i class="icon-arrow-right3"></i></button></center>
+	   		</div>
+
+	   		<script>function goToSite()
+				{
+				    var data = document.getElementById('data').value;
+				    window.open('https://lianapm.github.io/' + data, '_self');
+				}
+			</script>
+
+   		</div>
+	</div>
+</body>
+</html>
+
+{% endblock %}

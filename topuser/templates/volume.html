@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<html lang="en">
+  <head>
+    <title> Volume Based </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Chart js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css" integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w==" crossorigin="anonymous" />
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+</head>
+
+<body>
+  <div id="fh5co-main">
+      <div class="fh5co-narrow-content">
+        <center> <h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">&nbsp;&nbsp; TOP USER WITH THE BIGGEST NUMBER OF TWEETS </h2></center>&nbsp;&nbsp;&nbsp;&nbsp;
+     
+ 			<script>
+                    $(document).ready(function() {
+                                var ctx = document.getElementById('myChart').getContext('2d');
+                                var myChart = new Chart(ctx, {
+                                    type: 'bar',
+                                    data: {
+                                        labels: [{% for item in qs %}'{{item.name}}', {% endfor %}], 
+                                        datasets: [{
+                                            label: '# Total tweets',
+                                            data: [{% for item in qs %} {{item.total}}, {% endfor %}],
+                                            backgroundColor: [
+                                                '#2b0a2a',
+                                                '#40103d',
+                                                '#4a1447',
+                                                '#571a53',
+                                                '#70256b',
+                                                '#802b7a',
+                                                '#8c3186',
+                                                '#a13b9a',
+                                                '#b045a9',
+                                                '#c454bd',
+                                                '#d15cca',
+                                                '#e368dc',
+                                                '#f06ee9',
+                                                '#f5b3f1',
+                                                '#f6e6f7'
+                                            ],
+                                            borderWidth: 1 
+                                        }]
+                                    },
+                                });
+                            });
+                </script>
+            <canvas id="myChart" width="80" height="40"></canvas>
+        </div>
+</div>
+ 
+
+</body>
+</html>
+
+{% endblock %}
