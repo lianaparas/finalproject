@@ -1,7 +1,6 @@
 # finalproject
 
-I've been working on this for months :)
-
+For documentation purpose only~
 
 
 a web-based project created using Django to display multiple results and visualization of my social network analysis using Jaccard Similarity 
